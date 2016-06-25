@@ -1,0 +1,3 @@
+recursive-include intl-tel-input *
+include README
+include LICENSE
