@@ -18,11 +18,12 @@ class IntlTelInputWidget(forms.TextInput):
         if use_utils:
             self.options['utilsScript'] = 'https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/9.0.1/js/utils.js'
 
-        super(IntlTelInputWidget, self).__init__(attrs=final_attrs, format=format)
+        super(IntlTelInputWidget, self).__init__(attrs=final_attrs)
 
     def render(self, name, value, attrs=None):
         output_html = super(IntlTelInputWidget, self).render(name, value, attrs=attrs)
         output_html += format_html('<script>$("#{}").intlTelInput({});</script>', self._id, self.get_options())
+        return output_html
 
     def get_options(self):
         return json.dumps(self.options)
