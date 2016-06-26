@@ -23,7 +23,7 @@ class IntlTelInputWidget(forms.TextInput):
 
     def render(self, name, value, attrs=None):
         output_html = super(IntlTelInputWidget, self).render(name, value, attrs=attrs)
-        output_html += format_html('<script>$("#{}").intlTelInput({});</script>', self._id, self.get_options())
+        output_html += format_html('<script>$("#id_{}").intlTelInput({});</script>', name, self.get_options())
         return output_html
 
     def get_options(self):
