@@ -1,5 +1,6 @@
 import json
 from django import forms
+from django.utils import format_html
 
 
 class IntlTelInputWidget(forms.TextInput):
