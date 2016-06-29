@@ -32,7 +32,7 @@
         });
       });
 
-      forms.push(#form);
+      forms.push($form);
     }
   });
 })(jQuery);
