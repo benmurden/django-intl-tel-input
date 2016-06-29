@@ -1,6 +1,8 @@
 (function($) {
-  var $el, options,
-      inputs = $('.intl-tel-input');
+  var $el, options, $form,
+      cssClass = '.intl-tel-input',
+      forms = [],
+      inputs = $(cssClass);
 
   inputs.each(function(i, el) {
     $el = $(el);
@@ -19,5 +21,18 @@
     }
 
     $el.intlTelInput(options);
+
+    $form = $el.closest('form');
+    if (forms.indexOf($form) === -1) {
+      $form.submit(function(e) {
+        $form.find(cssClass).each(function(i, el) {
+          var el = $(el);
+          var number = el.intlTelInput("getNumber");
+          el.val(number);
+        });
+      });
+
+      forms.push(#form);
+    }
   });
 })(jQuery);
