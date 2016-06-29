@@ -2,7 +2,7 @@
   var $el, options,
       inputs = $('.intl-tel-input');
 
-  inputs.forEach(function(i, el) {
+  inputs.each(function(i, el) {
     $el = $(el);
     options = {};
 
