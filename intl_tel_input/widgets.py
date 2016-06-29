@@ -11,7 +11,7 @@ class IntlTelInputWidget(forms.TextInput):
         js = ('https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/9.0.1/js/intlTelInput.min.js', 'intl_tel_input/init.js')
 
     def __init__(self, attrs=None, use_utils=True):
-        final_attrs = {'class': 'phone-field', 'type': 'tel', 'size': '20'}
+        final_attrs = {'class': 'intl-tel-input', 'type': 'tel', 'size': '20'}
         if attrs is not None:
             final_attrs.update(attrs)
 
