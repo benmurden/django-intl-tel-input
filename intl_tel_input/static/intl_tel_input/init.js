@@ -20,17 +20,18 @@
       options['utilsScript'] = 'https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/9.0.1/js/utils.js';
     }
 
-    $el.intlTelInput(options);
-
-    $form = $el.closest('form');
-    if (forms.indexOf($form) === -1) {
-      $form.submit(function(e) {
-        $form.find(cssClass).val(function() {
-          return $(this).intlTelInput("getNumber");
+    $el.intlTelInput(options)
+    .done(function() {
+      $form = $el.closest('form');
+      if (forms.indexOf($form) === -1) {
+        $form.submit(function(e) {
+          $form.find('input' + cssClass).val(function() {
+            return $(this).intlTelInput("getNumber");
+          });
         });
-      });
 
-      forms.push($form);
-    }
+        forms.push($form);
+      }
+    });
   });
 })(jQuery);
