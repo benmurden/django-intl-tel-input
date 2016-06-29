@@ -16,7 +16,7 @@
       }
     };
 
-    if ($el.attr('data-utils-script')) {
+    if ($el.attr('data-utils-script') !== undefined) {
       options.utilsScript = 'https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/9.0.1/js/utils.js';
     }
 
