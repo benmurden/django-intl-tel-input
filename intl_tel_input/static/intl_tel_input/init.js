@@ -25,10 +25,8 @@
     $form = $el.closest('form');
     if (forms.indexOf($form) === -1) {
       $form.submit(function(e) {
-        $form.find(cssClass).each(function(i, el) {
-          var el = $(el);
-          var number = el.intlTelInput("getNumber");
-          el.val(number);
+        $form.find(cssClass).val(function() {
+          return $(this).intlTelInput("getNumber");
         });
       });
 
