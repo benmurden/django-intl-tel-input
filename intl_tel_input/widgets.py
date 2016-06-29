@@ -8,7 +8,7 @@ class IntlTelInputWidget(forms.TextInput):
         css = {
             'all': ('https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/9.0.1/css/intlTelInput.css',),
         }
-        js = ('https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/9.0.1/js/intlTelInput.min.js', 'intl_tel_input/intl_tel_input.js')
+        js = ('https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/9.0.1/js/intlTelInput.min.js', 'intl_tel_input/init.js')
 
     def __init__(self, attrs=None, use_utils=True):
         final_attrs = {'class': 'phone-field', 'type': 'tel', 'size': '20'}
