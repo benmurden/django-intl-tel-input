@@ -5,12 +5,12 @@ This is a new package, so it doesn't implement all the features of intl-tel-inpu
 
 ## Installation
 Install straight from the repo.
-```
+```shell
 pip install -e git://github.com/benmurden/django-intl-tel-input.git#egg=django-intl-tel-input
 ```
 
 Add intl-tel-input to your INSTALLED_APPS, so Django can find the init script.
-```
+```python
 ...
 INSTALLED_APPS += ('intl_tel_input',)
 ...
@@ -18,7 +18,7 @@ INSTALLED_APPS += ('intl_tel_input',)
 
 ## Usage
 Simply add `IntlTelInputWidget` to your form field.
-```
+```python
 from intl_tel_input.widgets import IntlTelInputWidget
 
 class MyForm(forms.ModelForm):
