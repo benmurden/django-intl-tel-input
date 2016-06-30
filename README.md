@@ -26,7 +26,7 @@ class MyForm(forms.ModelForm):
         model = MyModel
         fields = ['foo', 'bar']
         widgets = {
-            'bar': IntlTelInputWidget
+            'bar': IntlTelInputWidget()
         }
 ...
 ```
