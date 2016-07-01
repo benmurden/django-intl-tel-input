@@ -10,11 +10,11 @@ still down…
 Installation
 ------------
 
-Install straight from the repo.
+Install from PyPI.
 
 .. code:: shell
 
-    pip install -e git://github.com/benmurden/django-intl-tel-input.git#egg=django-intl-tel-input
+    pip install django-intl-tel-input
 
 Add intl-tel-input to your INSTALLED\_APPS, so Django can find the init
 script.
