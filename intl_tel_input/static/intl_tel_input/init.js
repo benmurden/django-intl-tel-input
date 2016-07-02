@@ -1,11 +1,12 @@
 (function($) {
-  var $el, options, $form,
+  var $el, options, $form, data,
       cssClass = '.intl-tel-input',
       forms = [],
       inputs = $(cssClass);
 
   inputs.each(function(i, el) {
     $el = $(el);
+    data = $el.data();
     options = {
       initialCountry: "auto",
       geoIpLookup: function(callback) {
@@ -13,10 +14,11 @@
           var countryCode = (resp && resp.country) ? resp.country : "";
           callback(countryCode);
         });
-      }
+      },
+      allowDropdown: data.allow-dropdown !== undefined ? true : false
     };
 
-    if ($el.attr('data-utils-script') !== undefined) {
+    if (data.utils-script !== undefined) {
       options.utilsScript = 'https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/9.0.1/js/utils.js';
     }
 
