@@ -15,7 +15,7 @@
           callback(countryCode);
         });
       },
-      allowDropdown: data.allow-dropdown !== undefined ? true : false
+      allowDropdown: data['allow-dropdown'] !== undefined ? true : false
     };
 
     if (data.utils-script !== undefined) {
