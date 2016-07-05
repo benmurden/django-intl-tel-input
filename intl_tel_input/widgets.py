@@ -12,7 +12,7 @@ class IntlTelInputWidget(forms.TextInput):
         }
         js = ('https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/9.0.1/js/intlTelInput.min.js', 'intl_tel_input/init.js')
 
-    def __init__(self, attrs=None, use_utils=True, allow_dropdown=True):
+    def __init__(self, attrs=None, allow_dropdown=True):
         final_attrs = {'class': 'intl-tel-input', 'size': '20'}
         if attrs is not None:
             final_attrs.update(attrs)

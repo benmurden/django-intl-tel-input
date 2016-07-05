@@ -18,9 +18,7 @@
       allowDropdown: data['allow-dropdown'] !== undefined ? true : false
     };
 
-    if (data.utils-script !== undefined) {
-      options.utilsScript = 'https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/9.0.1/js/utils.js';
-    }
+    options.utilsScript = 'https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/9.0.1/js/utils.js';
 
     $el.intlTelInput(options)
     .done(function() {
