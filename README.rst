@@ -43,6 +43,15 @@ Simply add ``IntlTelInputWidget`` to your form field.
             }
     ...
 
+With a standard form:
+
+.. code:: python
+
+    class MyForm(forms.Form):
+        tel_number = forms.CharField(widget=IntlTelInputWidget())
+
+    ...
+
 If you have included jQuery at the end of your document, then don’t
 forget to update the template when this widget appears with a
 ``{{ form.media.js }}``. Put it in a block that allows it to come after
