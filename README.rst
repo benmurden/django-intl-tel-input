@@ -58,3 +58,13 @@ forget to update the template when this widget appears with a
 jQuery.
 
 .. _intl-tel-input: https://github.com/jackocnr/intl-tel-input
+
+Options
+-------
+
+The widget can be invoked with keyword arguments which translate to the options
+available in intl-tel-input.
+
+allow_dropdown
+  Shows the country dropdown.
+  Default: True
