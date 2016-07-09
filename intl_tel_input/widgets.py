@@ -17,9 +17,6 @@ class IntlTelInputWidget(forms.TextInput):
         if attrs is not None:
             final_attrs.update(attrs)
 
-        if use_utils:
-            final_attrs['data-utils-script'] = True
-
         final_attrs['data-allow-dropdown'] = allow_dropdown
 
         super(IntlTelInputWidget, self).__init__(attrs=final_attrs)
