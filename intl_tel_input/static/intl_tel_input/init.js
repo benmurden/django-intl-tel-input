@@ -10,8 +10,8 @@
     options = {
       initialCountry: "auto",
       geoIpLookup: function(callback) {
-        $.get('https://ipinfo.io', function() {}, "jsonp").always(function(resp) {
-          var countryCode = (resp && resp.country) ? resp.country : "";
+        $.get('freegeoip.net/json/', function() {}, "jsonp").always(function(resp) {
+          var countryCode = (resp && resp.country_code) ? resp.country_code : "";
           callback(countryCode);
         });
       },
