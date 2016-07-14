@@ -15,7 +15,7 @@
           callback(countryCode);
         });
       },
-      allowDropdown: data['allow-dropdown'] !== undefined ? true : false
+      allowDropdown: data.allowDropdown !== undefined ? true : false
     };
 
     options.utilsScript = 'https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/9.0.1/js/utils.js';
