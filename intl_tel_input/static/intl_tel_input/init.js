@@ -10,7 +10,7 @@
     options = {
       initialCountry: "auto",
       geoIpLookup: function(callback) {
-        $.get('freegeoip.net/json/', function() {}, "jsonp").always(function(resp) {
+        $.get('//freegeoip.net/json/', function() {}, "jsonp").always(function(resp) {
           var countryCode = (resp && resp.country_code) ? resp.country_code : "";
           callback(countryCode);
         });
