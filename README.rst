@@ -52,10 +52,19 @@ With a standard form:
 
     ...
 
+Form media
+----------
+
 If you have included jQuery at the end of your document, then don’t
-forget to update the template when this widget appears with a
+forget to update the template where this widget appears with a
 ``{{ form.media.js }}``. Put it in a block that allows it to come after
 jQuery.
+
+If you load jQuery in the head of your document, you needn't worry about
+this step - widget media will be inserted right after the field. If you
+want to keep all JS at the end of your document, you can still use the
+``{{ form.media.js }}`` tag to achieve that. Just make sure it always comes
+after the form field.
 
 .. _intl-tel-input: https://github.com/jackocnr/intl-tel-input
 
