@@ -66,6 +66,17 @@ want to keep all JS at the end of your document, you can still use the
 ``{{ form.media.js }}`` tag to achieve that. Just make sure it always comes
 after the form field.
 
+If you need to load all JS in the head, you can make the ``init.js`` script
+wait for the document to be ready with the following snippet.
+
+.. code:: javascript
+
+    jQuery(document).ready(
+      {{ form.media.js }}
+    );
+    
+All this assumes your form context variable is called ``form``.
+
 .. _intl-tel-input: https://github.com/jackocnr/intl-tel-input
 
 Options
