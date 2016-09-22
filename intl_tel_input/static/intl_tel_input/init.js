@@ -1,5 +1,5 @@
 (function($) {
-  var $el, options, $form, data,
+  var $el, options, $form, data, defaultCode,
       cssClass = '.intl-tel-input',
       forms = [],
       inputs = $(cssClass);
@@ -7,12 +7,16 @@
   inputs.each(function(i, el) {
     $el = $(el);
     data = $el.data();
+    defaultCode = data.defaultCode !== undefined ? data.defaultCode : 'us';
     options = {
       initialCountry: "auto",
       geoIpLookup: function(callback) {
-        $.get('//freegeoip.net/json/', function() {}, "jsonp").always(function(resp) {
+        $.get('//freegeoip.net/json/', function() {}, "jsonp").done(function(resp) {
           var countryCode = (resp && resp.country_code) ? resp.country_code : "";
           callback(countryCode);
+        }).fail(function(jqXHR) {
+          console.warn('GeoIP Error: ' + jqXHR.status);
+          callback(defaultCode);
         });
       },
       allowDropdown: data.allowDropdown !== undefined ? true : false
