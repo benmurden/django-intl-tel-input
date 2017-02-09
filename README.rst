@@ -3,9 +3,9 @@ django-intl-tel-input
 
 A Django form widget based on the jQuery plugin `intl-tel-input`_.
 
-This is a new package, so it doesn’t implement all the features of
-intl-tel-input. However, it has been stable in testing, so if you’re
-still down…
+This is a new package, so it doesn't implement all the features of
+intl-tel-input. However, it has been stable in testing, so if you're
+still down...
 
 Installation
 ------------
@@ -55,7 +55,7 @@ With a standard form:
 Form media
 ----------
 
-If you have included jQuery at the end of your document, then don’t
+If you have included jQuery at the end of your document, then don't
 forget to update the template where this widget appears with a
 ``{{ form.media.js }}``. Put it in a block that allows it to come after
 jQuery.
