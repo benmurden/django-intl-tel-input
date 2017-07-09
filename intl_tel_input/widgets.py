@@ -1,54 +1,92 @@
 import json
+import copy
+
 from django import forms
-from django.forms.utils import flatatt
-from django.utils.encoding import force_text
-from django.utils.html import format_html
 from django.utils.safestring import mark_safe
+from django.forms.renderers import get_default_renderer
 
 
-class IntlTelInputWidget(forms.TextInput):
+class IntlTelInput(forms.TextInput):
     input_type = 'tel'
+
+    def __init__(self, attrs=None, **kwargs):
+        my_attrs = {'size': '20', 'class': 'js-intl-tel-input'}
+
+        # Add class which is used to identify intl-tel-input
+        if attrs is not None:
+            my_attrs['class'] = ' '.join([my_attrs['class'], attrs.pop('class', '')]).strip()
+
+        # Add intl-tel-input options as data attributes.
+        # All data attribute values will be available in init.js via the jQuery data() function using camelCase,
+        # e.g. 'data-allow-dropdown' > data.allowDropdown
+        my_attrs['data-allow-dropdown'] = kwargs.get('allow_dropdown', True)
+        my_attrs['data-preferred-countries'] = json.dumps(kwargs.get('preferred_countries', ['us', 'gb']))
+        my_attrs['data-default-code'] = kwargs.get('default_code', 'us')
+        my_attrs['data-auto-geo-ip'] = kwargs.get('auto_geo_ip', False)
+
+        if attrs is not None:
+            my_attrs.update(attrs)
+
+        super(IntlTelInput, self).__init__(my_attrs)
+
+
+class IntlTelInputHidden(forms.HiddenInput):
+    def __init__(self, attrs=None):
+        my_attrs = {'class': 'js-intl-tel-input-hidden'}
+
+        # Add class which is used to identify intl-tel-input
+        if attrs is not None:
+            my_attrs['class'] = ' '.join([my_attrs['class'], attrs.pop('class', '')]).strip()
+
+        if attrs is not None:
+            my_attrs.update(attrs)
+
+        super(IntlTelInputHidden, self).__init__(my_attrs)
+
+
+class IntlTelInputWidget(forms.Widget):
+    _visible_input_key = 'visible_input'
+    _hidden_input_key = 'hidden_input'
 
     class Media:
         css = {
-            'all': ('https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/9.0.1/css/intlTelInput.css',),
+            'all': ('https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/11.1.1/css/intlTelInput.css',),
         }
-        js = ('https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/9.0.1/js/intlTelInput.min.js', 'intl_tel_input/init.js')
+        js = (
+            'https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/11.1.1/js/intlTelInput.min.js',
+            'intl_tel_input/init.js',
+        )
 
-    def __init__(self, attrs=None, allow_dropdown=True, preferred_countries=['us', 'gb'], default_code='us', auto_geo_ip=False):
-        final_attrs = {'size': '2'}
-        if attrs is not None:
-            final_attrs.update(attrs)
-
-        self.js_attrs = {
-            'size': '20',
-            'data-allow-dropdown': allow_dropdown,
-            'data-preferred-countries': json.dumps(preferred_countries),
-            'data-default-code': default_code,
-            'data-auto-geo-ip': auto_geo_ip,
+    def __init__(self, visible_input_attrs=None, hidden_input_attrs=None, **kwargs):
+        self.widgets = {
+            self._visible_input_key: IntlTelInput(attrs=visible_input_attrs, **kwargs),
+            self._hidden_input_key: IntlTelInputHidden(attrs=hidden_input_attrs),
         }
+        super(IntlTelInputWidget, self).__init__()
 
-        super(IntlTelInputWidget, self).__init__(attrs=final_attrs)
+    def __deepcopy__(self, memo):
+        obj = copy.copy(self)
+        obj.attrs = self.attrs.copy()
+        obj.widgets = self.widgets.copy()
+        memo[id(self)] = obj
+        return obj
 
-    def get_options(self):
-        return json.dumps(self.options)
+    def render(self, name, value, attrs=None, renderer=None):
+        visible_input = self.widgets[self._visible_input_key]
+        hidden_input = self.widgets[self._hidden_input_key]
 
-    def render(self, name, value, attrs=None):
-        if value is None:
-            value = ''
+        output = [
+            self._render(visible_input.template_name,
+                         visible_input.get_context(name, value, attrs),
+                         renderer),
+            self._render(hidden_input.template_name,
+                         hidden_input.get_context(name, value, attrs),
+                         renderer),
+        ]
 
-        final_attrs = self.build_attrs(attrs, name=name, size=2)
-        final_attrs['type'] = 'hidden'
-        if value != '':
-            final_attrs['value'] = force_text(self._format_value(value))
-
-        self.js_attrs['class'] = ' '.join(['intl-tel-input', final_attrs.get('class', '')]).strip()
-
-        output = [format_html('<input{}>', flatatt(final_attrs))]
-        select = self.render_select()
-        output.append(select)
         return mark_safe('\n'.join(output))
 
-    def render_select(self):
-        output = format_html('<input{}>', flatatt(self.js_attrs))
-        return output
+    def _render(self, template_name, context, renderer=None):
+        if renderer is None:
+            renderer = get_default_renderer()
+        return renderer.render(template_name, context)
