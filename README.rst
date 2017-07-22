@@ -27,7 +27,7 @@ script.
 Usage
 -----
 
-Simply add ``IntlTelInputWidget`` to your form field.
+Simply add ``IntlTelInputWidget`` to your form field. It will add a visible text input field and a hidden input field.
 
 .. code:: python
 
@@ -47,8 +47,22 @@ With a standard form:
 .. code:: python
 
     class MyForm(forms.Form):
-        tel_number = forms.CharField(widget=IntlTelInputWidget())
+        tel_number = forms.CharField(widget=IntlTelInputWidget(
+            visible_input_attrs={
+                'size': '30',
+                'class': 'my-css-class',
+                ...
+            },
+            hidden_input_attrs={
+                'class': 'another-css-class',
+                ...
+            }
+        ))
         ...
+
+The two arguments ``visible_input_attrs`` and ``hidden_input_attrs`` can be used to add additional HTML 
+attributes to the visible text input field respectively to the hidden input field. 
+
 
 Form media
 ----------

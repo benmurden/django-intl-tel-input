@@ -11,11 +11,7 @@ class IntlTelInput(forms.TextInput):
         Initialize visible International Telephone Input field in which users enter their phone number.
 
         :param attrs: Dictionary of HTML attributes, e.g. {'size': '50', 'class': 'my-css-class'}
-        :param kwargs: intl-tel-input options according to
-            https://github.com/jackocnr/intl-tel-input/blob/master/README.md#options.
-            All options are added as data attributes (e.g. data-auto-placeholder="polite") to this input field.
-
-            Be aware that option names must be given in snake_case. They will be translated to camelCase in the init.js.
+        :param kwargs: intl-tel-input options (see :class:~.IntlTelInputWidget`)
         """
         my_attrs = {'size': '30', 'class': 'js-intl-tel-input'}
 
@@ -77,6 +73,17 @@ class IntlTelInputWidget(forms.MultiWidget):
         )
 
     def __init__(self, visible_input_attrs=None, hidden_input_attrs=None, **kwargs):
+        """
+        Initialize MultiWidget comprising a TextInput and a HiddenInput widget.
+
+        :param visible_input_attrs: Dictionary with HTML attributes of the TextInput widget.
+        :param hidden_input_attrs: Dictionary with HTML attributes of the HiddenInput widget.
+        :param kwargs: intl-tel-input options according to
+            https://github.com/jackocnr/intl-tel-input/blob/master/README.md#options.
+            All options are added as data attributes (e.g. data-auto-placeholder="polite") to this input field.
+
+            Be aware that option names must be given in snake_case. They will be translated to camelCase in the init.js.
+        """
         _widgets = (
             IntlTelInput(attrs=visible_input_attrs, **kwargs),
             IntlTelInputHidden(attrs=hidden_input_attrs),
