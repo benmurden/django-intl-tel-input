@@ -61,8 +61,9 @@ jQuery.
 If you load jQuery in the head of your document, you needn't worry about
 this step - widget media will be inserted right after the field. If you
 want to keep all JS at the end of your document, you can still use the
-``{{ form.media.js }}`` tag to achieve that. In case you use `crispy-forms`_
-and in order to assure that ``init.js`` gets loaded after jQuery:
+``{{ form.media.js }}`` tag to achieve that. However, if you use `crispy-forms`_,
+you need to set ``include_media = False`` in order to assure that ``init.js``
+gets loaded **after** jQuery and consequently to avoid JS errors:
 
 .. code:: python
 
@@ -74,7 +75,7 @@ and in order to assure that ``init.js`` gets loaded after jQuery:
             ...
 
 If you use ``self.helper.include_media = False`` in your form, you
-further have to add ``{{ user_form.media.css }}`` to your template
+have to add ``{{ form.media.css }}`` to your template
 where this widget appears in order to load ``intlTelInput.css``.
 
 If you need to load all JS in the head, you can make the ``init.js`` script
@@ -95,70 +96,71 @@ Options
 -------
 
 The widget can be invoked with most keyword arguments which translate to the `options`_
-available in the jQuery plugin **intl-tel-input**.
+available in the jQuery plugin intl-tel-input.
 
-**allow_dropdown**
-Type: `Boolean` Default: `True`
+allow_dropdown
+  Type: `Boolean` Default: `True`
 
-Example usage:
+  Example usage:
 
-.. code:: python
+    .. code:: python
+    
+        class MyForm(forms.Form):
+                tel_number = forms.CharField(widget=IntlTelInputWidget(
+                    allow_dropdown=False,
+                ))
+                ...
 
-    class MyForm(forms.Form):
-            tel_number = forms.CharField(widget=IntlTelInputWidget(
-                allow_dropdown=False,
-            ))
-            ...
+auto_hide_dial_code
+  Type: `Boolean` Default: `True`
 
-**auto_hide_dial_code**
-Type: `Boolean` Default: `True`
+auto_placeholder
+  Type: `String` Default: `"polite"`
 
-**auto_placeholder**
-Type: `String` Default: `"polite"`
+custom_placeholder
+  This option is not implemented yet.
 
-**custom_placeholder**
-This option is not implemented yet.
+dropdown_container
+  Type: `String` Default: `""`
 
-**dropdown_container**
-Type: `String` Default: `""`
+exclude_countries
+  Type: `List` Default: `[]`
 
-**exclude_countries**
-Type: `List` Default: `[]`
+  Example usage:
 
-Example usage:
+    .. code:: python
+    
+        class MyForm(forms.Form):
+                tel_number = forms.CharField(widget=IntlTelInputWidget(
+                    exclude_countries=['at', 'de', 'ch'],
+                ))
+                ...
 
-.. code:: python
+format_on_display
+  Type: `Boolean` Default: `True`
 
-    class MyForm(forms.Form):
-            tel_number = forms.CharField(widget=IntlTelInputWidget(
-                exclude_countries=['at', 'de', 'ch'],
-            ))
-            ...
+auto_geo_ip
+  Type: `Boolean` Default: `False`
 
-**format_on_display**
-Type: `Boolean` Default: `True`
+  This option represents geoIpLookup. If set to `True`, the user's location is lookup up. 
+  In order to lookup the user's location, https://freegeoip.net/json/ is used.
 
-**auto_geo_ip**
-Type: `Boolean` Default: `False`
-This option represents geoIpLookup. If set to `True`, the user's location is lookup up.
-In order to lookup the user's location, https://freegeoip.net/json/ is used.
+initial_country
+  Type: `String` Default: `""`
 
-**initial_country**
-Type: `String` Default: `""`
+national_mode
+  Type: `Boolean` Default: `True`
 
-**national_mode**
-Type: `Boolean` Default: `True`
+placeholder_number_type
+  Type: `String` Default: `"MOBILE"`
 
-**placeholder_number_type**
-Type: `String` Default: `"MOBILE"`
+only_countries  
+  Type: `List` Default: `[]`  
 
-**only_countries**
-Type: `List` Default: `[]`
+preferred_countries
+  Type: `List` Default: `['us', 'gb']`
 
-**preferred_countries**
-Type: `List` Default: `['us', 'gb']`
-
-**separate_dial_code**
-Type: `Boolean` Default: `False`
+separate_dial_code
+  Type: `Boolean` Default: `False`
 
 .. _options: https://github.com/jackocnr/intl-tel-input/blob/master/README.md#options
