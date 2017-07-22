@@ -99,7 +99,7 @@ The widget can be invoked with most keyword arguments which translate to the `op
 available in the jQuery plugin intl-tel-input.
 
 allow_dropdown
-  Type: `Boolean` Default: `True`
+  Type: ``Boolean`` Default: ``True``
 
   Example usage:
 
@@ -112,19 +112,19 @@ allow_dropdown
                 ...
 
 auto_hide_dial_code
-  Type: `Boolean` Default: `True`
+  Type: ``Boolean`` Default: ``True``
 
 auto_placeholder
-  Type: `String` Default: `"polite"`
+  Type: ``String`` Default: ``"polite"``
 
 custom_placeholder
   This option is not implemented yet.
 
 dropdown_container
-  Type: `String` Default: `""`
+  Type: ``String`` Default: ``""``
 
 exclude_countries
-  Type: `List` Default: `[]`
+  Type: ``List`` Default: ``[]``
 
   Example usage:
 
@@ -137,30 +137,30 @@ exclude_countries
                 ...
 
 format_on_display
-  Type: `Boolean` Default: `True`
+  Type: ``Boolean`` Default: ``True``
 
 auto_geo_ip
-  Type: `Boolean` Default: `False`
+  Type: ``Boolean`` Default: ``False``
 
-  This option represents geoIpLookup. If set to `True`, the user's location is lookup up. 
+  This option represents geoIpLookup. If set to ``True``, the user's location is lookup up. 
   In order to lookup the user's location, https://freegeoip.net/json/ is used.
 
 initial_country
-  Type: `String` Default: `""`
+  Type: ``String`` Default: ``""``
 
 national_mode
-  Type: `Boolean` Default: `True`
+  Type: ``Boolean`` Default: ``True``
 
 placeholder_number_type
-  Type: `String` Default: `"MOBILE"`
+  Type: ``String`` Default: ``"MOBILE"``
 
 only_countries  
-  Type: `List` Default: `[]`  
+  Type: ``List`` Default: ``[]``  
 
 preferred_countries
-  Type: `List` Default: `['us', 'gb']`
+  Type: ``List`` Default: ``['us', 'gb']``
 
 separate_dial_code
-  Type: `Boolean` Default: `False`
+  Type: ``Boolean`` Default: ``False``
 
 .. _options: https://github.com/jackocnr/intl-tel-input/blob/master/README.md#options
