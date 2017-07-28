@@ -1,6 +1,11 @@
 django-intl-tel-input
 =====================
 
+.. image:: https://travis-ci.org/benmurden/django-intl-tel-input.svg?branch=master
+    :target: https://travis-ci.org/benmurden/django-intl-tel-input
+.. image:: https://codecov.io/gh/benmurden/django-intl-tel-input/branch/master/graph/badge.svg
+  :target: https://codecov.io/gh/benmurden/django-intl-tel-input
+
 A Django form widget based on the jQuery plugin `intl-tel-input`_.
 
 This is a new package, so it doesn't implement all the features of
