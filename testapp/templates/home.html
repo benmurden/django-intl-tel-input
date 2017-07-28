@@ -1,0 +1,15 @@
+<!doctype html>
+<html>
+    <head>
+        <title>django-intl-tel-input test</title>
+        {{ form.media.css }}
+    </head>
+    <body>
+        <form method="post">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <input type="submit" value="Submit" />
+        </form>
+        {{ form.media.js }}
+    </body>
+</html>

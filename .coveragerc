@@ -1,0 +1,9 @@
+[run]
+branch = True
+
+[report]
+ignore_errors = True
+omit = *tests*,*manage.py
+
+[html]
+directory = coverage_html_report

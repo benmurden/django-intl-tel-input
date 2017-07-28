@@ -1,4 +1,5 @@
 import json
+
 from django import forms
 from django.forms.utils import flatatt
 from django.utils.encoding import force_text
@@ -11,11 +12,20 @@ class IntlTelInputWidget(forms.TextInput):
 
     class Media:
         css = {
-            'all': ('https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/9.0.1/css/intlTelInput.css',),
+            'all': (
+                'https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/'
+                '9.0.1/css/intlTelInput.css',
+                ),
         }
-        js = ('https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/9.0.1/js/intlTelInput.min.js', 'intl_tel_input/init.js')
+        js = (
+            'https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/'
+            '9.0.1/js/intlTelInput.min.js',
+            'intl_tel_input/init.js',
+            )
 
-    def __init__(self, attrs=None, allow_dropdown=True, preferred_countries=['us', 'gb'], default_code='us', auto_geo_ip=False):
+    def __init__(self, attrs=None, allow_dropdown=True,
+                 preferred_countries=['us', 'gb'], default_code='us',
+                 auto_geo_ip=False):
         final_attrs = {'size': '2'}
         if attrs is not None:
             final_attrs.update(attrs)
@@ -42,7 +52,9 @@ class IntlTelInputWidget(forms.TextInput):
         if value != '':
             final_attrs['value'] = force_text(self._format_value(value))
 
-        self.js_attrs['class'] = ' '.join(['intl-tel-input', final_attrs.get('class', '')]).strip()
+        self.js_attrs['class'] = ' '.join([
+            'intl-tel-input', final_attrs.get('class', '')
+            ]).strip()
 
         output = [format_html('<input{}>', flatatt(final_attrs))]
         select = self.render_select()
