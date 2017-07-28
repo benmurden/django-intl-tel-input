@@ -1,3 +1,5 @@
+from __future__ import unicode_literals
+
 import html5lib
 from django.test import TestCase
 
@@ -25,10 +27,14 @@ class IntlTelInputTest(TestCase):
 
     def test_static(self):
         r = self.client.get('/')
-        self.assertIn('/js/intlTelInput.min.js', r.content)
-        self.assertIn('/intl_tel_input/init.js', r.content)
-        self.assertIn('/css/intlTelInput.css', r.content)
+        self.assertIn('/js/intlTelInput.min.js', r.content.decode('utf-8'))
+        self.assertIn('/intl_tel_input/init.js', r.content.decode('utf-8'))
+        self.assertIn('/css/intlTelInput.css', r.content.decode('utf-8'))
 
     def test_post(self):
         r = self.client.post('/', {'tel_number': '+81123456789'})
         self.assertRedirects(r, '/?ok')
+
+    def test_with_attrs(self):
+        r = self.client.get('/attrs-test/')
+        self.assertIn('title="Telephone number"', r.content.decode('utf-8'))

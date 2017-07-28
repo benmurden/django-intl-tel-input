@@ -1,7 +1,7 @@
 from django.http import HttpResponseRedirect
 from django.shortcuts import render
 
-from .forms import TelForm
+from .forms import TelForm, TelFormAttrs
 
 
 def home(request):
@@ -12,4 +12,9 @@ def home(request):
     else:
         form = TelForm()
 
+    return render(request, 'home.html', {'form': form})
+
+
+def attrs_test(request):
+    form = TelFormAttrs()
     return render(request, 'home.html', {'form': form})
