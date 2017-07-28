@@ -60,16 +60,23 @@ With a standard form:
 Form media
 ----------
 
+Include ``{{ form.media.css }}`` in the ``<head>`` of your template. This will ensure all styles are parsed before the widget is displayed.
+
 If you have included jQuery at the end of your document, then don't
 forget to update the template where this widget appears with a
 ``{{ form.media.js }}``. Put it in a block that allows it to come after
 jQuery.
 
-If you load jQuery in the head of your document, you needn't worry about
-this step - widget media will be inserted right after the field. If you
-want to keep all JS at the end of your document, you can still use the
-``{{ form.media.js }}`` tag to achieve that. Just make sure it always comes
-after the form field.
+If you're using `crispy-forms`_, the static content will be inserted automatically beside the input. To prevent this, be sure to set ``include_media = False`` on your form helper.
+
+.. code:: python
+
+    class MyForm(forms.Form):
+    ...
+        def __init__(self, *args, **kwargs):
+            self.helper = FormHelper()
+            self.helper.include_media = False
+    ...
 
 If you need to load all JS in the head, you can make the ``init.js`` script
 wait for the document to be ready with the following snippet.
@@ -83,6 +90,7 @@ wait for the document to be ready with the following snippet.
 All this assumes your form context variable is called ``form``.
 
 .. _intl-tel-input: https://github.com/jackocnr/intl-tel-input
+.. _crispy-forms: https://github.com/django-crispy-forms/django-crispy-forms
 
 Options
 -------
