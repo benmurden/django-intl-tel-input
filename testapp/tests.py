@@ -38,3 +38,7 @@ class IntlTelInputTest(TestCase):
     def test_with_attrs(self):
         r = self.client.get('/attrs-test/')
         self.assertIn('title="Telephone number"', r.content.decode('utf-8'))
+
+    def test_with_initial(self):
+        r = self.client.get('/initial-test/')
+        self.assertIn('value="+81123456789"', r.content.decode('utf-8'))
