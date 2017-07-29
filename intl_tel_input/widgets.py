@@ -40,9 +40,6 @@ class IntlTelInputWidget(forms.TextInput):
 
         super(IntlTelInputWidget, self).__init__(attrs=final_attrs)
 
-    def get_options(self):
-        return json.dumps(self.options)
-
     def render(self, name, value, attrs=None):
         if value is None:
             value = ''
