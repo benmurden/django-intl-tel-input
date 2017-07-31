@@ -100,4 +100,15 @@ available in intl-tel-input.
 
 allow_dropdown
   Shows the country dropdown.
-  Default: True
+  Default: ``True``
+
+default_code
+  Country code selected by default. Overridden when using ``auto_geo_ip``.
+  Default: ``'us'``
+
+auto_geo_ip
+  When True, `freegeoip`_ will be used to autodetect the user's country via Ajax. There is a limit of 15,000 queries per hour, so it should not be used on high-traffic sites. Alternatively use `pygeoip`_, detect server-side, then set the ``default_code``.
+  Default: ``False``
+
+.. _freegeoip: https://freegeoip.net
+.. _pygeoip: https://pypi.python.org/pypi/pygeoip
