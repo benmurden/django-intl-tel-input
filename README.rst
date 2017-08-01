@@ -1,16 +1,15 @@
-django-intl-tel-input
+Django intl-tel-input
 =====================
 
 .. image:: https://travis-ci.org/benmurden/django-intl-tel-input.svg?branch=master
-    :target: https://travis-ci.org/benmurden/django-intl-tel-input
+  :target: https://travis-ci.org/benmurden/django-intl-tel-input
 .. image:: https://codecov.io/gh/benmurden/django-intl-tel-input/branch/master/graph/badge.svg
   :target: https://codecov.io/gh/benmurden/django-intl-tel-input
 
-A Django form widget based on the jQuery plugin `intl-tel-input`_.
+A Django form widget for international telephone numbers based on the jQuery plugin `intl-tel-input`_.
 
 This is a new package, so it doesn't implement all the features of
-intl-tel-input. However, it has been stable in testing, so if you're
-still down...
+intl-tel-input. However, it is well tested, and has been stable in production.
 
 Installation
 ------------
