@@ -5,14 +5,15 @@
       inputs = $(cssClass);
 
   inputs.each(function(i, el) {
+
     $el = $(el);
     $realInput = $el.prev();
     data = $el.data();
     defaultCode = data.defaultCode !== undefined ? data.defaultCode : 'us';
     options = {
-      initialCountry: data.autoGeoIp ? 'auto' : data.defaultCode,
+      initialCountry: data.autoGeoIp!== undefined ? 'auto' : data.defaultCode,
       geoIpLookup: function(callback) {
-        if (data.autoGeoIp) {
+        if (data.autoGeoIp!== undefined) {
           $.get('//freegeoip.net/json/', function() {}, "jsonp").done(function(resp) {
             var countryCode = (resp && resp.country_code) ? resp.country_code : "";
             callback(countryCode);
@@ -26,6 +27,8 @@
     };
 
     options.utilsScript = 'https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/9.0.1/js/utils.js';
+    options.preferredCountries = data.preferredCountries,
+
 
     $el.intlTelInput(options)
     .done(function() {
