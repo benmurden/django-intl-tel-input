@@ -3,7 +3,7 @@ branch = True
 
 [report]
 ignore_errors = True
-omit = *tests*,*manage.py
+omit = *tests*,testapp/manage.py
 
 [html]
 directory = coverage_html_report
