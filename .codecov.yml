@@ -1,0 +1,2 @@
+ignore:
+    - "testapp/wsgi.py"
