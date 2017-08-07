@@ -3,6 +3,8 @@ from __future__ import unicode_literals
 import html5lib
 from django.test import TestCase
 
+from intl_tel_input.widgets import IntlTelInputWidget
+
 
 class IntlTelInputTest(TestCase):
     def assertValidHTML(self, content, msg=None):
@@ -39,7 +41,14 @@ class IntlTelInputTest(TestCase):
         r = self.client.get('/attrs-test/')
         self.assertIn('title="Telephone number"', r.content.decode('utf-8'))
         self.assertIn('data-default-code="jp"', r.content.decode('utf-8'))
+        self.assertIn('data-preferred-countries="[&quot;jp&quot;]"',
+                      r.content.decode('utf-8'))
 
     def test_with_initial(self):
         r = self.client.get('/initial-test/')
         self.assertIn('value="+81123456789"', r.content.decode('utf-8'))
+
+    def test_extra_attrs(self):
+        widget = IntlTelInputWidget()
+        attrs = widget.build_attrs(extra_attrs={'required': True})
+        self.assertTrue(attrs['required'])
