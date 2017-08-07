@@ -52,3 +52,6 @@ class IntlTelInputTest(TestCase):
         widget = IntlTelInputWidget()
         attrs = widget.build_attrs(extra_attrs={'required': True})
         self.assertTrue(attrs['required'])
+        attrs = widget.build_attrs()
+        self.assertIsNone(attrs.get('required'))
+        self.assertEqual(attrs['size'], '2')
