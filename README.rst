@@ -105,6 +105,10 @@ default_code
   Country code selected by default. Overridden when using ``auto_geo_ip``.
   Default: ``'us'``
 
+preferred_countries
+  Array of countries that will always appear at the top of the dropdown.
+  Default: ``['us', 'gb']``
+
 auto_geo_ip
   When True, `freegeoip`_ will be used to autodetect the user's country via Ajax. There is a limit of 15,000 queries per hour, so it should not be used on high-traffic sites. Alternatively use `pygeoip`_, detect server-side, then set the ``default_code``.
   Default: ``False``
