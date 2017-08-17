@@ -11,6 +11,14 @@ A Django form widget for international telephone numbers based on the jQuery plu
 This is a new package, so it doesn't implement all the features of
 intl-tel-input. However, it is well tested, and has been stable in production.
 
+Version support
+---------------
+
+Tested on the following versions of Python and Django.
+
+Python: 2.7, 3.3, 3.4, 3.5, 3.6
+Django: 1.8, 1.9, 1.10, 1.11
+
 Installation
 ------------
 
