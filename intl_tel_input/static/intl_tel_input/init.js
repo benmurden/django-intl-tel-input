@@ -1,13 +1,13 @@
 ;(function($) {
-  var $el, $realInput, options, $form, data, initialCountry, autoGeoIp, autoHideDialCode,
+  var options, $form, data, initialCountry, autoGeoIp, autoHideDialCode,
       cssClass = '.js-intl-tel-input',
       hiddenCssClass = '.js-intl-tel-input-hidden',
       forms = [],
       inputs = $(cssClass);
 
   inputs.each(function(i, el) {
-    $el = $(el);
-    $realInput = $el.siblings(hiddenCssClass);
+    var $el = $(el);
+    var $realInput = $el.siblings(hiddenCssClass);
     data = $el.data();
     initialCountry = data.initialCountry !== undefined ? data.initialCountry : '';
     autoGeoIp = data.autoGeoIp !== undefined ? true : false;
