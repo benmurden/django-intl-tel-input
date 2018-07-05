@@ -13,3 +13,7 @@ class TelFormAttrs(forms.Form):
         preferred_countries=['jp'],
         default_code='jp'
     ))
+
+
+class TwoTelForm(TelForm):
+    tel_number_2 = forms.CharField(widget=IntlTelInputWidget())

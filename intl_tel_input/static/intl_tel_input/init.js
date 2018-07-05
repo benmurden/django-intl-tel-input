@@ -1,10 +1,11 @@
 (function($) {
-  var $el, $realInput, options, $form, data, defaultCode,
+  var options, data, defaultCode,
       cssClass = '.intl-tel-input',
       forms = [],
       inputs = $(cssClass);
 
   inputs.each(function(i, el) {
+    var $el, $realInput, $form;
 
     $el = $(el);
     $realInput = $el.prev();

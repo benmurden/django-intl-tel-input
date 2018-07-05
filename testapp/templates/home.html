@@ -6,6 +6,9 @@
     </head>
     <body>
         <form method="post">
+            {% if form.is_valid %}
+            <p id="success-text">Form is valid</p>
+            {% endif %}
             {% csrf_token %}
             {{ form.as_p }}
             <input type="submit" value="Submit" />

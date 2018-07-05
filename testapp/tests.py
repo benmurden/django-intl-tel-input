@@ -1,9 +1,15 @@
 from __future__ import unicode_literals
 
 import html5lib
+from django.contrib.staticfiles.testing import StaticLiveServerTestCase
 from django.test import TestCase
 
 from intl_tel_input.widgets import IntlTelInputWidget
+from selenium.webdriver import Firefox
+from selenium.webdriver.common.by import By
+from selenium.webdriver.common.keys import Keys
+from selenium.webdriver.support import expected_conditions as EC
+from selenium.webdriver.support.ui import WebDriverWait
 
 
 class IntlTelInputTest(TestCase):
@@ -55,3 +61,26 @@ class IntlTelInputTest(TestCase):
         attrs = widget.build_attrs()
         self.assertIsNone(attrs.get('required'))
         self.assertEqual(attrs['size'], '2')
+
+
+class AcceptanceTest(StaticLiveServerTestCase):
+    def setUp(self):
+        self.driver = Firefox()
+
+    def tearDown(self):
+        self.driver.quit()
+
+    def test_two_inputs(self):
+        driver = self.driver
+        driver.get('{live_server_url}/two-field-test/'.format(
+            live_server_url=self.live_server_url
+        ))
+        inputs = driver.find_elements_by_css_selector('input.intl-tel-input')
+        inputs[0].send_keys('555-5555')
+        inputs[1].send_keys('555-4444')
+        inputs[1].send_keys(Keys.RETURN)
+        WebDriverWait(driver, 10).until(
+            EC.presence_of_element_located((By.ID, 'success-text'))
+        )
+
+        self.assertIn('Form is valid', driver.page_source)

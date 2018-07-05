@@ -7,11 +7,17 @@ python:
 
 sudo: false
 
+addons:
+  firefox: latest
+
 env:
-    - DJANGO=1.8
-    - DJANGO=1.9
-    - DJANGO=1.10
-    - DJANGO=1.11
+    matrix:
+        - DJANGO=1.8
+        - DJANGO=1.9
+        - DJANGO=1.10
+        - DJANGO=1.11
+    global:
+        - MOZ_HEADLESS=1
 
 matrix:
     fast_finish: true
