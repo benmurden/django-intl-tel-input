@@ -17,13 +17,10 @@ before_install:
     - export PATH=$PATH:$PWD/geckodriver
 
 env:
-    matrix:
-        - DJANGO=1.8
-        - DJANGO=1.9
-        - DJANGO=1.10
-        - DJANGO=1.11
-    global:
-        - MOZ_HEADLESS=1
+    - DJANGO=1.8
+    - DJANGO=1.9
+    - DJANGO=1.10
+    - DJANGO=1.11
 
 matrix:
     fast_finish: true

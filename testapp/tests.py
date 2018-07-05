@@ -8,6 +8,7 @@ from intl_tel_input.widgets import IntlTelInputWidget
 from selenium.webdriver import Firefox
 from selenium.webdriver.common.by import By
 from selenium.webdriver.common.keys import Keys
+from selenium.webdriver.firefox.options import Options
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.support.ui import WebDriverWait
 
@@ -65,7 +66,9 @@ class IntlTelInputTest(TestCase):
 
 class AcceptanceTest(StaticLiveServerTestCase):
     def setUp(self):
-        self.driver = Firefox()
+        options = Options()
+        options.add_argument('-headless')
+        self.driver = Firefox(firefox_options=options)
 
     def tearDown(self):
         self.driver.quit()
