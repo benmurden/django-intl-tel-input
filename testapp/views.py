@@ -7,8 +7,7 @@ from .forms import TelForm, TelFormAttrs, TwoTelForm
 def home(request):
     if request.POST:
         form = TelForm(request.POST)
-        if form.is_valid():
-            return HttpResponseRedirect('{path}?ok'.format(path=request.path))
+        return HttpResponseRedirect('{path}?ok'.format(path=request.path))
     else:
         form = TelForm()
 
