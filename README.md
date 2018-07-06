@@ -9,20 +9,18 @@ A Django form widget for international telephone numbers based on the
 jQuery plugin
 [intl-tel-input](https://github.com/jackocnr/intl-tel-input).
 
-This is a new package, so it doesn't implement all the features of
-intl-tel-input. However, it is well tested, and has been stable in
-production.
+This package is pre 1.0, so doesn't implement every feature of intl-tel-input. However, it is well tested, and has been stable in production.
 
-### Version support
+## Version support
 
 Tested on the following versions of Python and Django.
 
-| Package | Version support |
-| ------- | --------------- |
-| Python | 2.7, 3.4, 3.5, 3.6 |
-| Django | 1.8, 1.9, 1.10, 1.11 |
+| Package | Version support      |
+| ------- | ---------------      |
+| Python  | 2.7, 3.4, 3.5, 3.6   |
+| Django  | 1.8, 1.9, 1.10, 1.11 |
 
-### Installation
+## Installation
 
 Install from PyPI.
 
@@ -39,7 +37,7 @@ INSTALLED_APPS += ('intl_tel_input',)
 ...
 ```
 
-### Usage
+## Usage
 
 Simply add `IntlTelInputWidget` to your form field.
 
@@ -65,7 +63,7 @@ class MyForm(forms.Form):
 ...
 ```
 
-### Form media
+## Form media
 
 Include `{{ form.media.css }}` in the `<head>` of your template. This
 will ensure all styles are parsed before the widget is displayed.
