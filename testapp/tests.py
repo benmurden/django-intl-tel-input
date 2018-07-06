@@ -82,7 +82,7 @@ class AcceptanceTest(StaticLiveServerTestCase):
         inputs[0].send_keys('555-5555')
         inputs[1].send_keys('555-4444')
         inputs[1].send_keys(Keys.RETURN)
-        WebDriverWait(driver, 10).until(
+        WebDriverWait(driver, 15).until(
             EC.presence_of_element_located((By.ID, 'success-text'))
         )
 
