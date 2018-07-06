@@ -2,7 +2,6 @@ Django intl-tel-input
 =====================
 
 [![Build Status](https://travis-ci.org/benmurden/django-intl-tel-input.svg?branch=master)](https://travis-ci.org/benmurden/django-intl-tel-input)
-
 [![Code coverage](https://img.shields.io/codecov/c/github/benmurden/django-intl-tel-input.svg)](https://codecov.io/gh/benmurden/django-intl-tel-input)
 
 A Django form widget for international telephone numbers based on the
