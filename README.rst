@@ -1,22 +1,23 @@
 Django intl-tel-input
 =====================
 
-.. image:: https://travis-ci.org/benmurden/django-intl-tel-input.svg?branch=master
-  :target: https://travis-ci.org/benmurden/django-intl-tel-input
-.. image:: https://img.shields.io/codecov/c/github/benmurden/django-intl-tel-input.svg
-  :target: https://codecov.io/gh/benmurden/django-intl-tel-input
+[![image]]
 
-A Django form widget for international telephone numbers based on the jQuery plugin `intl-tel-input`_.
+[![image][1]]
 
-This is a new package, so it doesn't implement all the features of
-intl-tel-input. However, it is well tested, and has been stable in production.
+A Django form widget for international telephone numbers based on the
+jQuery plugin [intl-tel-input].
+
+This is a new package, so it doesn\'t implement all the features of
+intl-tel-input. However, it is well tested, and has been stable in
+production.
 
 Version support
 ---------------
 
 Tested on the following versions of Python and Django.
 
-Python: 2.7, 3.3, 3.4, 3.5, 3.6
+Python: 2.7, 3.4, 3.5, 3.6
 Django: 1.8, 1.9, 1.10, 1.11
 
 Installation
@@ -24,102 +25,115 @@ Installation
 
 Install from PyPI.
 
-.. code:: shell
-
-    pip install django-intl-tel-input
+``` {.sourceCode .shell}
+pip install django-intl-tel-input
+```
 
 Add intl-tel-input to your INSTALLED\_APPS, so Django can find the init
 script.
 
-.. code:: python
-
-    ...
-    INSTALLED_APPS += ('intl_tel_input',)
-    ...
+``` {.sourceCode .python}
+...
+INSTALLED_APPS += ('intl_tel_input',)
+...
+```
 
 Usage
 -----
 
-Simply add ``IntlTelInputWidget`` to your form field.
+Simply add `IntlTelInputWidget` to your form field.
 
-.. code:: python
+``` {.sourceCode .python}
+from intl_tel_input.widgets import IntlTelInputWidget
 
-    from intl_tel_input.widgets import IntlTelInputWidget
-
-    class MyForm(forms.ModelForm):
-        class Meta:
-            model = MyModel
-            fields = ['foo', 'bar']
-            widgets = {
-                'bar': IntlTelInputWidget()
-            }
-    ...
+class MyForm(forms.ModelForm):
+    class Meta:
+        model = MyModel
+        fields = ['foo', 'bar']
+        widgets = {
+            'bar': IntlTelInputWidget()
+        }
+...
+```
 
 With a standard form:
 
-.. code:: python
+``` {.sourceCode .python}
+class MyForm(forms.Form):
+    tel_number = forms.CharField(widget=IntlTelInputWidget())
 
-    class MyForm(forms.Form):
-        tel_number = forms.CharField(widget=IntlTelInputWidget())
-
-    ...
+...
+```
 
 Form media
 ----------
 
-Include ``{{ form.media.css }}`` in the ``<head>`` of your template. This will ensure all styles are parsed before the widget is displayed.
+Include `{{ form.media.css }}` in the `<head>` of your template. This
+will ensure all styles are parsed before the widget is displayed.
 
-If you have included jQuery at the end of your document, then don't
+If you have included jQuery at the end of your document, then don\'t
 forget to update the template where this widget appears with a
-``{{ form.media.js }}``. Put it in a block that allows it to come after
+`{{ form.media.js }}`. Put it in a block that allows it to come after
 jQuery.
 
-If you're using `crispy-forms`_, the static content will be inserted automatically beside the input. To prevent this, be sure to set ``include_media = False`` on your form helper.
+If you\'re using [crispy-forms], the static content will be inserted
+automatically beside the input. To prevent this, be sure to set
+`include_media = False` on your form helper.
 
-.. code:: python
+``` {.sourceCode .python}
+class MyForm(forms.Form):
+...
+    def __init__(self, *args, **kwargs):
+        self.helper = FormHelper()
+        self.helper.include_media = False
+...
+```
 
-    class MyForm(forms.Form):
-    ...
-        def __init__(self, *args, **kwargs):
-            self.helper = FormHelper()
-            self.helper.include_media = False
-    ...
+If you need to load all JS in the head, you can make the `init.js`
+script wait for the document to be ready with the following snippet.
 
-If you need to load all JS in the head, you can make the ``init.js`` script
-wait for the document to be ready with the following snippet.
+``` {.sourceCode .javascript}
+jQuery(document).ready(
+  {{ form.media.js }}
+);
+```
 
-.. code:: javascript
+All this assumes your form context variable is called `form`.
 
-    jQuery(document).ready(
-      {{ form.media.js }}
-    );
-    
-All this assumes your form context variable is called ``form``.
-
-.. _intl-tel-input: https://github.com/jackocnr/intl-tel-input
-.. _crispy-forms: https://github.com/django-crispy-forms/django-crispy-forms
+  [image]: https://travis-ci.org/benmurden/django-intl-tel-input.svg?branch=master
+  [![image]]: https://travis-ci.org/benmurden/django-intl-tel-input
+  [1]: https://img.shields.io/codecov/c/github/benmurden/django-intl-tel-input.svg
+  [![image][1]]: https://codecov.io/gh/benmurden/django-intl-tel-input
+  [intl-tel-input]: https://github.com/jackocnr/intl-tel-input
+  [crispy-forms]: https://github.com/django-crispy-forms/django-crispy-forms
 
 Options
--------
+=======
 
-The widget can be invoked with keyword arguments which translate to the options
-available in intl-tel-input.
+The widget can be invoked with keyword arguments which translate to the
+options available in intl-tel-input.
 
-allow_dropdown
-  Shows the country dropdown.
-  Default: ``True``
+allow\_dropdown
 
-default_code
-  Country code selected by default. Overridden when using ``auto_geo_ip``.
-  Default: ``'us'``
+:   Shows the country dropdown. Default: `True`
 
-preferred_countries
-  Array of countries that will always appear at the top of the dropdown.
-  Default: ``['us', 'gb']``
+default\_code
 
-auto_geo_ip
-  When True, `freegeoip`_ will be used to autodetect the user's country via Ajax. There is a limit of 15,000 queries per hour, so it should not be used on high-traffic sites. Alternatively use `pygeoip`_, detect server-side, then set the ``default_code``.
-  Default: ``False``
+:   Country code selected by default. Overridden when using
+    `auto_geo_ip`. Default: `'us'`
 
-.. _freegeoip: https://freegeoip.net
-.. _pygeoip: https://pypi.python.org/pypi/pygeoip
+preferred\_countries
+
+:   Array of countries that will always appear at the top of the
+    dropdown. Default: `['us', 'gb']`
+
+auto\_geo\_ip
+
+:   When True, [freegeoip] will be used to autodetect the user\'s
+    country via Ajax. There is a limit of 15,000 queries per hour, so it
+    should not be used on high-traffic sites. Alternatively use
+    [pygeoip], detect server-side, then set the `default_code`. Default:
+    `False`
+
+  [freegeoip]: https://freegeoip.net
+  [pygeoip]: https://pypi.python.org/pypi/pygeoip

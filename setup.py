@@ -16,6 +16,7 @@ setup(
     license='BSD License',
     description='A Django form widget implementing intl-tel-input.',
     long_description=README,
+    long_description_content_type="text/markdown",
     url='https://github.com/benmurden/django-intl-tel-input',
     author='Benjamin Murden',
     author_email='benmurden@github.com',
