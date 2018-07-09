@@ -14,12 +14,12 @@ class IntlTelInputWidget(forms.TextInput):
         css = {
             'all': (
                 'https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/'
-                '9.0.1/css/intlTelInput.css',
+                '12.4.0/css/intlTelInput.css',
                 ),
         }
         js = (
             'https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/'
-            '9.0.1/js/intlTelInput.min.js',
+            '12.4.0/js/intlTelInput.min.js',
             'intl_tel_input/init.js',
             )
 

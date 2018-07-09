@@ -27,7 +27,7 @@
       allowDropdown: data.allowDropdown !== undefined ? true : false
     };
 
-    options.utilsScript = 'https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/9.0.1/js/utils.js';
+    options.utilsScript = 'https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/12.4.0/js/utils.js';
     options.preferredCountries = data.preferredCountries,
 
 
