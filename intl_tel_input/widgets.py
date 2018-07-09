@@ -32,6 +32,7 @@ class IntlTelInputWidget(forms.TextInput):
 
         self.js_attrs = {
             'size': '20',
+            'placeholder': final_attrs.pop('placeholder', None),
             'data-allow-dropdown': allow_dropdown,
             'data-preferred-countries': json.dumps(preferred_countries),
             'data-default-code': default_code,
