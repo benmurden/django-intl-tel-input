@@ -9,7 +9,7 @@ class TelForm(forms.Form):
 
 class TelFormAttrs(forms.Form):
     tel_number = forms.CharField(widget=IntlTelInputWidget(
-        attrs={'title': 'Telephone number'},
+        attrs={'title': 'Telephone number', 'placeholder': 'foobar'},
         preferred_countries=['jp'],
         default_code='jp'
     ))

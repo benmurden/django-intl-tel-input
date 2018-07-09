@@ -50,6 +50,7 @@ class IntlTelInputTest(TestCase):
         self.assertIn('data-default-code="jp"', r.content.decode('utf-8'))
         self.assertIn('data-preferred-countries="[&quot;jp&quot;]"',
                       r.content.decode('utf-8'))
+        self.assertIn('placeholder="foobar"', r.content.decode('utf-8'))
 
     def test_with_initial(self):
         r = self.client.get('/initial-test/')
