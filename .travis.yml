@@ -25,18 +25,22 @@ matrix:
     include:
       - python: "3.7"
         dist: xenial
-        env:
-            - DJANGO=2.0
-            - DJANGO=2.1
+        env: DJANGO=2.0
+      - python: "3.7"
+        dist: xenial
+        env: DJANGO=2.1
+
       - python: "3.4"
-        env:
-            - DJANGO=1.11
-            - DJANGO=2.0
+        env: DJANGO=1.11
+      - python: "3.4"
+        env: DJANGO=2.0
+
       - python: "2.7"
-        env:
-            - TOXENV="flake8"
-            - DJANGO=1.11
-      - python: "2.7"
+        env: DJANGO=1.11
+
+      - python: "3.7"
+        env: TOXENV="flake8"
+      - python: "3.7"
         env: TOXENV="isort"
 
 install:
