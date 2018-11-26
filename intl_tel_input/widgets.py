@@ -55,7 +55,7 @@ class IntlTelInputWidget(forms.TextInput):
         final_attrs = self.build_attrs(attrs, name=name, size=2)
         final_attrs['type'] = 'hidden'
         if value != '':
-            final_attrs['value'] = force_text(self._format_value(value))
+            final_attrs['value'] = force_text(self.format_value(value))
 
         self.js_attrs['class'] = ' '.join([
             'intl-tel-input', final_attrs.get('class', '')
