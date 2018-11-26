@@ -48,7 +48,7 @@ class IntlTelInputWidget(forms.TextInput):
             attrs.update(extra_attrs)
         return attrs
 
-    def render(self, name, value, attrs=None):
+    def render(self, name, value, renderer=None, attrs=None):
         if value is None:
             value = ''
 
