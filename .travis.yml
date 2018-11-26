@@ -1,9 +1,8 @@
 language: python
 
 python:
-    - "2.7"
-    - "3.4"
     - "3.5"
+    - "3.6"
 
 sudo: false
 
@@ -17,18 +16,25 @@ before_install:
     - export PATH=$PATH:$PWD/geckodriver
 
 env:
-    - DJANGO=1.8
-    - DJANGO=1.9
-    - DJANGO=1.10
     - DJANGO=1.11
+    - DJANGO=2.0
+    - DJANGO=2.1
 
 matrix:
     fast_finish: true
     include:
-      - python: "3.6"
-        env: DJANGO=1.11
+      - python: "3.7"
+        env:
+            - DJANGO=2.0
+            - DJANGO=2.1
+      - python: "3.4"
+        env:
+            - DJANGO=1.11
+            - DJANGO=2.0
       - python: "2.7"
-        env: TOXENV="flake8"
+        env:
+            - TOXENV="flake8"
+            - DJANGO=1.11
       - python: "2.7"
         env: TOXENV="isort"
 
