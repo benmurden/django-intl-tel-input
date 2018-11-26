@@ -39,8 +39,10 @@ matrix:
         env: DJANGO=1.11
 
       - python: "3.7"
+        dist: xenial
         env: TOXENV="flake8"
       - python: "3.7"
+        dist: xenial
         env: TOXENV="isort"
 
 install:
