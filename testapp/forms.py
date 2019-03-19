@@ -4,7 +4,7 @@ from intl_tel_input.widgets import IntlTelInputWidget
 
 
 class TelForm(forms.Form):
-    tel_number = forms.CharField(widget=IntlTelInputWidget())
+    tel_number = forms.CharField(widget=IntlTelInputWidget(), required=True)
 
 
 class TelFormAttrs(forms.Form):
@@ -16,4 +16,4 @@ class TelFormAttrs(forms.Form):
 
 
 class TwoTelForm(TelForm):
-    tel_number_2 = forms.CharField(widget=IntlTelInputWidget())
+    tel_number_2 = forms.CharField(widget=IntlTelInputWidget(), required=True)

@@ -6,6 +6,8 @@ from django.utils.encoding import force_text
 from django.utils.html import format_html
 from django.utils.safestring import mark_safe
 
+INTL_TEL_INPUT_VERSION = '15.0.1'
+
 
 class IntlTelInputWidget(forms.TextInput):
     input_type = 'tel'
@@ -14,58 +16,50 @@ class IntlTelInputWidget(forms.TextInput):
         css = {
             'all': (
                 'https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/'
-                '12.4.0/css/intlTelInput.css',
+                '{version}/css/intlTelInput.css'.format(
+                    version=INTL_TEL_INPUT_VERSION
                 ),
+            ),
         }
         js = (
             'https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/'
-            '12.4.0/js/intlTelInput.min.js',
-            'intl_tel_input/init.js',
-            )
+            '{version}/js/intlTelInput-jquery.min.js'.format(
+                version=INTL_TEL_INPUT_VERSION
+            ),
+        )
 
     def __init__(self, attrs=None, allow_dropdown=True,
                  preferred_countries=['us', 'gb'], default_code='us',
-                 auto_geo_ip=False):
-        final_attrs = {'size': '2'}
-        if attrs is not None:
-            final_attrs.update(attrs)
+                 use_default_init=True):
 
-        self.js_attrs = {
+        if use_default_init:
+            self.Media.js += ('intl_tel_input/init.js',)
+
+        final_attrs = {
             'size': '20',
-            'placeholder': final_attrs.pop('placeholder', None),
             'data-allow-dropdown': allow_dropdown,
             'data-preferred-countries': json.dumps(preferred_countries),
             'data-default-code': default_code,
-            'data-auto-geo-ip': auto_geo_ip,
         }
 
-        super(IntlTelInputWidget, self).__init__(attrs=final_attrs)
+        if attrs is not None:
+            final_attrs.update(attrs)
 
-    def build_attrs(self, extra_attrs=None, **kwargs):
-        "Helper function for building an attribute dictionary."
-        attrs = dict(self.attrs, **kwargs)
-        if extra_attrs:
-            attrs.update(extra_attrs)
-        return attrs
+        super(IntlTelInputWidget, self).__init__(attrs=final_attrs)
 
     def render(self, name, value, renderer=None, attrs=None):
         if value is None:
             value = ''
 
-        final_attrs = self.build_attrs(attrs, name=name, size=2)
-        final_attrs['type'] = 'hidden'
+        final_attrs = self.build_attrs(attrs, self.attrs)
+        final_attrs['data-hidden-name'] = name
+
         if value != '':
             final_attrs['value'] = force_text(self.format_value(value))
 
-        self.js_attrs['class'] = ' '.join([
+        final_attrs['class'] = ' '.join([
             'intl-tel-input', final_attrs.get('class', '')
-            ]).strip()
+        ]).strip()
 
-        output = [format_html('<input{}>', flatatt(final_attrs))]
-        select = self.render_select()
-        output.append(select)
-        return mark_safe('\n'.join(output))
-
-    def render_select(self):
-        output = format_html('<input{}>', flatatt(self.js_attrs))
-        return output
+        output = format_html('<input{}>', flatatt(final_attrs))
+        return mark_safe(output)
