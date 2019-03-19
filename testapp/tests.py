@@ -1,7 +1,5 @@
 from __future__ import unicode_literals
 
-from time import sleep
-
 import html5lib
 from django.contrib.staticfiles.testing import StaticLiveServerTestCase
 from django.test import TestCase
