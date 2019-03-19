@@ -15,7 +15,7 @@
       initialCountry: data.autoGeoIp!== undefined ? 'auto' : data.defaultCode,
       geoIpLookup: function(callback) {
         if (data.autoGeoIp!== undefined) {
-          $.get('//freegeoip.net/json/', function() {}, "jsonp").done(function(resp) {
+          $.get('https://ipinfo.io', function() {}, "jsonp").done(function(resp) {
             var countryCode = (resp && resp.country_code) ? resp.country_code : "";
             callback(countryCode);
           }).fail(function(jqXHR) {
