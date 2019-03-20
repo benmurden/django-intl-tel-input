@@ -17,3 +17,9 @@ class TelFormAttrs(forms.Form):
 
 class TwoTelForm(TelForm):
     tel_number_2 = forms.CharField(widget=IntlTelInputWidget(), required=True)
+
+
+class TelFormNoInit(forms.Form):
+    tel_number = forms.CharField(widget=IntlTelInputWidget(
+        use_default_init=False
+    ))

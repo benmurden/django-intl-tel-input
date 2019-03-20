@@ -58,6 +58,10 @@ class IntlTelInputTest(TestCase):
         r = self.client.get('/initial-test/')
         self.assertIn('value="+81123456789"', r.content.decode('utf-8'))
 
+    def test_use_default_init(self):
+        r = self.client.get('/no-init-test/')
+        self.assertNotIn('/intl_tel_input/init.js', r.content.decode('utf-8'))
+
 
 class wait_for_utils_script(object):
     def __call__(self, driver):

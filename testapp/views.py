@@ -1,7 +1,7 @@
 from django.http import HttpResponseRedirect
 from django.shortcuts import render
 
-from .forms import TelForm, TelFormAttrs, TwoTelForm
+from .forms import TelForm, TelFormAttrs, TwoTelForm, TelFormNoInit
 
 
 def home(request):
@@ -29,4 +29,9 @@ def two_fields_test(request):
         form = TwoTelForm(request.POST)
     else:
         form = TwoTelForm()
+    return render(request, 'home.html', {'form': form})
+
+
+def no_init_test(request):
+    form = TelFormNoInit()
     return render(request, 'home.html', {'form': form})
