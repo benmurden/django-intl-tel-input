@@ -26,7 +26,7 @@ Install from PyPI.
 pip install django-intl-tel-input
 ```
 
-Add intl-tel-input to your INSTALLED\_APPS, so Django can find the init
+Add intl-tel-input to your `INSTALLED_APPS`, so Django can find the init
 script.
 
 ```python
@@ -114,6 +114,9 @@ Default: `'us'`
 Array of countries that will always appear at the top of the dropdown.
 Default: `['us', 'gb']`
 
-### auto\_geo\_ip
-When True, [freegeoip](https://freegeoip.net) will be used to autodetect the user's country via Ajax. There is a limit of 15,000 queries per hour, so it should not be used on high-traffic sites. Alternatively use [pygeoip](https://pypi.python.org/pypi/pygeoip), detect server-side, then set the `default_code`.
-Default: `False`
+### use\_default\_init
+Use the provided init.js to initialize the plugin. Set this to `False` 
+if you want to provide your own initialization for the plugin. This is 
+useful if, for example, you have your own GeoIP implementation you'd 
+like to use.
+Default: `True`
