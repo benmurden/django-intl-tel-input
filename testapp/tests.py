@@ -61,7 +61,9 @@ class IntlTelInputTest(TestCase):
 
 class wait_for_utils_script(object):
     def __call__(self, driver):
-        return driver.execute_script("return window.intlTelInputUtils !== undefined")
+        return driver.execute_script(
+            "return window.intlTelInputUtils !== undefined"
+        )
 
 
 class AcceptanceTest(StaticLiveServerTestCase):
