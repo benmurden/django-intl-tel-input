@@ -1,7 +1,7 @@
 from django.http import HttpResponseRedirect
 from django.shortcuts import render
 
-from .forms import TelForm, TelFormAttrs, TwoTelForm, TelFormNoInit
+from .forms import TelForm, TelFormAttrs, TelFormNoInit, TwoTelForm
 
 
 def home(request):
