@@ -1,6 +1,7 @@
 import json
 
 from django import forms
+from django.conf import settings
 from django.forms.utils import flatatt
 from django.utils.encoding import force_text
 from django.utils.html import format_html
@@ -16,6 +17,11 @@ class IntlTelInputWidget(forms.TextInput):
                  preferred_countries=['us', 'gb'], default_code='us',
                  use_default_init=True):
 
+        # Gets default form values from Settings
+        allow_dropdown = getattr(settings, 'INTL_TEL_INPUT_ALLOW_DROPDOWN', allow_dropdown)
+        preferred_countries = getattr(settings, 'INTL_TEL_INPUT_PREFERRED_COUNTRIES', preferred_countries)
+        default_code = getattr(settings, 'INTL_TEL_INPUT_DEFAULT_CODE', default_code)
+        
         self.use_default_init = use_default_init
 
         final_attrs = {
@@ -60,7 +66,9 @@ class IntlTelInputWidget(forms.TextInput):
 
         final_attrs = self.build_attrs(attrs, self.attrs)
         final_attrs['data-hidden-name'] = name
-
+        if 'name' not in final_attrs:
+            final_attrs['name'] = name
+            
         if value != '':
             final_attrs['value'] = force_text(self.format_value(value))
 
