@@ -66,8 +66,7 @@ class IntlTelInputWidget(forms.TextInput):
 
         final_attrs = self.build_attrs(attrs, self.attrs)
         final_attrs['data-hidden-name'] = name
-        if 'name' not in final_attrs:
-            final_attrs['name'] = name
+        final_attrs.setdefault('name', name)
             
         if value != '':
             final_attrs['value'] = force_text(self.format_value(value))
