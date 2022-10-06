@@ -2,11 +2,14 @@ import json
 
 from django import forms
 from django.forms.utils import flatatt
-from django.utils.encoding import force_text
+try:
+    from django.utils.encoding import force_str as force_text
+except ImportError:
+    from django.utils.encoding import force_text
 from django.utils.html import format_html
 from django.utils.safestring import mark_safe
 
-INTL_TEL_INPUT_VERSION = '15.0.1'
+INTL_TEL_INPUT_VERSION = '17.0.19'
 
 
 class IntlTelInputWidget(forms.TextInput):
