@@ -14,7 +14,7 @@
       hiddenInput: data.hiddenName
     };
 
-    options.utilsScript = 'https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/15.0.1/js/utils.js';
+    options.utilsScript = 'https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.19/js/utils.js';
     options.preferredCountries = data.preferredCountries;
 
     $el.intlTelInput(options);
