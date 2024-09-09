@@ -13,10 +13,10 @@ This package is pre 1.0, so doesn't implement every feature of intl-tel-input. H
 
 Tested on the following versions of Python and Django.
 
-| Package | Version support         |
-| ------- | ----------------------- |
-| Python  | 2.7, 3.4, 3.5, 3.6, 3.7 |
-| Django  | 1.11, 2.0, 2.1          |
+| Package | Version support               |
+| ------- | ----------------------------- |
+| Python  | 2.7, 3.4, 3.5, 3.6, 3.7, 3.10 |
+| Django  | 1.11, 2.0, 2.1, 3.0, 4.0      |
 
 ## Installation
 
